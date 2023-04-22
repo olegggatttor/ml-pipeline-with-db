@@ -8,6 +8,9 @@ services:
        image: olegggatttor/ml-pipe-bike-sharing-with-db:latest
        links:
            - "mysql:mldb"
+       depends_on:
+           mysql:
+               condition: service_healthy
    mysql:
        command: --init-file /data/application/init_ml_db.sql
        volumes:
@@ -20,3 +23,7 @@ services:
            MYSQL_DATABASE: ml_pipe_db
            MYSQL_TCP_PORT: ${MYSQL_CLIENT_PORT}
        image: mysql
+       healthcheck:
+           test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+           timeout: 20s
+           retries: 10
