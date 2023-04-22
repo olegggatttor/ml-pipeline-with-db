@@ -3,3 +3,6 @@
 ['remote "vkcloud"']
     url = s3://bike-sharing-demand
     acl = bucket-owner-full-control
+    endpointurl = https://hb.bizmrg.com
+    access_key_id = ixvjLFFuEYnj4gHzyuRVEz
+    secret_access_key = chDWSS6JTUr937pLjTPrCDc7cFF7LRQyCpzhyrUj5XBr

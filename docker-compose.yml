@@ -6,3 +6,19 @@ services:
        ports:
            - 8000:8000
        image: olegggatttor/ml-pipe-bike-sharing:latest
+       links:
+           - "mysql:mldb"
+   mysql:
+       ports:
+           - ${MYSQL_CLIENT_PORT}:${MYSQL_INTERNAL_PORT}
+       command: --init-file /data/application/init_ml_db.sql
+       volumes:
+           - ./init_ml_db.sql:/data/application/init_ml_db.sql
+       container_name: mldb
+       restart: unless-stopped
+       environment:
+           MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
+           MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+           MYSQL_DATABASE: ml_pipe_db
+           MYSQL_TCP_PORT: ${MYSQL_INTERNAL_PORT}
+       image: mysql
