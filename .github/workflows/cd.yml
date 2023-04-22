@@ -7,7 +7,7 @@ on:
       - completed
 
 env:
-  MYSQL_CLIENT_PORT: ${{ secrets.MYSQL_CLIENT_PORT }}
+  MYSQL_CLIENT_PORT: fromJSON(${{ secrets.MYSQL_CLIENT_PORT }})
   MYSQL_ROOT_USER: ${{ secrets.MYSQL_ROOT_USER }}
   MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
 
