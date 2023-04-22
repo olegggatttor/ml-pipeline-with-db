@@ -6,6 +6,12 @@ on:
     types:
       - completed
 
+env:
+  MYSQL_CLIENT_PORT: ${{ secrets.MYSQL_CLIENT_PORT }}
+  MYSQL_INTERNAL_PORT: ${{ secrets.MYSQL_INTERNAL_PORT }}
+  MYSQL_ROOT_USER: ${{ secrets.MYSQL_ROOT_USER }}
+  MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+
 jobs:
   cd:
     runs-on: ubuntu-latest
