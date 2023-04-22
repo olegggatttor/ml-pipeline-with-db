@@ -10,7 +10,7 @@ services:
            - "mysql:mldb"
    mysql:
        ports:
-           - ${MYSQL_CLIENT_PORT}:${MYSQL_INTERNAL_PORT}
+           - ${MYSQL_CLIENT_PORT}:3306 # default mysql port for internal
        command: --init-file /data/application/init_ml_db.sql
        volumes:
            - ./init_ml_db.sql:/data/application/init_ml_db.sql
@@ -20,5 +20,4 @@ services:
            MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
            MYSQL_DATABASE: ml_pipe_db
-           MYSQL_TCP_PORT: ${MYSQL_INTERNAL_PORT}
        image: mysql
