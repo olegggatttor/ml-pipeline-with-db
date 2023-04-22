@@ -34,10 +34,6 @@ jobs:
           dvc remote modify vkcloud secret_access_key ${{ secrets.VKCLOUD_SECRET_ACCESS_KEY }} && \
           dvc pull
       -
-        name: Create .env file
-        run: |
-          echo "${{ secrets.MYSQL_ENV }}" > .env
-      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:

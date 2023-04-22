@@ -23,5 +23,12 @@ jobs:
         name: Pull with compose
         run: docker-compose pull
       -
+        name: Create .env file
+        run: |
+          echo "${{ secrets.MYSQL_ENV }}" > .env
+      -
+        name: Compose config
+        run: docker compose config
+      -
         name: Run tests
         run: docker-compose up --abort-on-container-exit
