@@ -2,7 +2,7 @@ version: '3.8'
 services:
    r_forest_training:
        build: .
-       command: bash -c "python src/trainer.py --test_preds_out=data/preds.csv --model_save_path=data/r_forest.pickle && python src/predict.py && coverage run src/unit_tests/test_preprocess.py && coverage run -a src/unit_tests/test_training.py && coverage report -m"
+       command: bash -c "python src/trainer.py --test_preds_out=data/preds.csv --model_save_path=data/r_forest.pickle && python src/predict.py --user=${MYSQL_ROOT_USER} --password=${MYSQL_ROOT_PASSWORD} --port=${MYSQL_CLIENT_PORT} && coverage run src/unit_tests/test_preprocess.py && coverage run -a src/unit_tests/test_training.py && coverage report -m"
        ports:
            - 8000:8000
        image: olegggatttor/ml-pipe-bike-sharing-with-db:latest
@@ -16,7 +16,7 @@ services:
        volumes:
            - ./init_ml_db.sql:/data/application/init_ml_db.sql
        container_name: mldb
-       restart: unless-stopped
+       restart: always
        environment:
            MYSQL_ROOT_USER: ${MYSQL_ROOT_USER}
            MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
