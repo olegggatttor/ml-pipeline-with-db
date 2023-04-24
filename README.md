@@ -26,6 +26,7 @@ Link: https://www.kaggle.com/competitions/bike-sharing-demand
 - Put dataset to S3 using DVC
 - Created Dockerfile and docker-compose.yml
 - Created piplines usin GitHub Actions
+- Added logging of features, predictions and target during functional tests to MySQL database
 
 ## Test results (CD)
 
